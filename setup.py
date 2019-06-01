@@ -5,7 +5,6 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="sheepped",
-    version="0.1.0",
     author="Gabriel Stefanini",
     author_email="g4brielvs@gbrielvs.me",
     description="A Python wrapper for tracking delivery!",
@@ -27,4 +26,5 @@ setuptools.setup(
         'lxml', 
         'requests', 
         'xmltodict'],
+    version="0.1.1",
 )

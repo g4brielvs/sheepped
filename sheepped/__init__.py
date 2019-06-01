@@ -7,45 +7,26 @@ import xmltodict
 
 from lxml import etree
 
-class USPSApiError(Exception):
-    pass
+class USPS(object):
+    '''
+    Wrapper around USPS tracking API
 
+    :param str user_id: USPS User ID
+    '''
+    def __init__(self, user_id):
+        self.user_id = user_id
 
-class USPSApi(object):
-    BASE_URL = 'https://secure.shippingapis.com/ShippingAPI.dll?API='
-    urls = {
-        'tracking': 'TrackV2{test}&XML={xml}',
-        'label': 'eVS{test}&XML={xml}',
-        'validate': 'Verify&XML={xml}',
-    }
+    API_URL = 'https://secure.shippingapis.com/ShippingAPI.dll?API='
 
-    def __init__(self,  api_user_id, test=False):
-        self.api_user_id = api_user_id
-        self.test = test
+    def track(self, tracking_number):
+        xml = etree.Element('TrackFieldRequest', {'USERID': self.user_id})
+        child = etree.SubElement(xml, 'TrackID', {'ID': tracking_number})
 
-    def get_url(self, action, xml):
-        return self.BASE_URL + self.urls[action].format(
-            **{'test': 'Certify' if self.test else '', 'xml': xml}
-        )
+        xml = etree.tostring(xml).decode()
+        url = f'{self.API_URL}TrackV2&XML={xml}'
 
-    def send_request(self, action, xml):
-        xml = etree.tostring(xml, pretty_print=self.test).decode()
-        url = self.get_url(action, xml)
         xml_response = requests.get(url).content
         response = json.loads(json.dumps(xmltodict.parse(xml_response)))
         if 'Error' in response:
-            raise USPSApiError(response['Error']['Description'])
+            raise
         return response
-
-
-    def track(self, *args, **kwargs):
-        return TrackingInfo(self, *args, **kwargs)
-
-
-class TrackingInfo(object):
-
-    def __init__(self, usps, tracking_number):
-        xml = etree.Element('TrackFieldRequest', {'USERID': usps.api_user_id})
-        child = etree.SubElement(xml, 'TrackID', {'ID': tracking_number})
-
-        self.result = usps.send_request('tracking', xml)
