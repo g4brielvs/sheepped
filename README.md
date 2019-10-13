@@ -15,3 +15,7 @@ Now, register at [USPS](https://registration.shippingapis.com) to get your ```US
     $ from sheppeed import USPS
     $ usps = USPS('${USPS_USER_ID}')
     $ usps.track('${USPS_TRACKING_NUMBER}')
+
+## Tests
+
+    $ python setup.py test
