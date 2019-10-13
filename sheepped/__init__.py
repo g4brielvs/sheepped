@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+from os import getenv
 
 import requests
 import xmltodict
@@ -18,8 +18,10 @@ class USPS:
 
     URL = "https://secure.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML="
 
-    def __init__(self, user_id):
-        self.user_id = user_id
+    def __init__(self, user_id=None):
+        if not user_id and not getenv("USPS_USER_ID"):
+            raise USPSError("No USPS ID passed or envvar USPS_USER_ID set.")
+        self.user_id = user_id or getenv("USPS_USER_ID")
 
     def url_for(self, tracking_number):
         xml = etree.Element("TrackFieldRequest", {"USERID": self.user_id})

@@ -15,12 +15,10 @@ Now, register at [USPS](https://registration.shippingapis.com) to get your `USPS
 Suppose you have set an environment variable `USPS_USER_ID` with your USPS ID and your tracking number is `42`:
 
 ```python
-from os import environ
-
 from sheepped import USPS
 
 
-usps = USPS(environ["USPS_USER_ID"])
+usps = USPS()
 usps.track("42")
 ```
 
@@ -28,18 +26,16 @@ If you have a bucnh of tracking numbers, you might want to use the async API:
 
 ```python
 import asyncio
-from os import environ
 
 from sheepped import USPS
 
-
-usps = USPS(environ["USPS_USER_ID"])
+usps = USPS()
 
 async def main():
     tracking_numbers = ("1", "2", "3", "5", "8", "13", "21")
     tasks = tuple(usps.aiotrack(n) for n in tracking_numbers)
     return await asyncio.gather(*tasks)
-    
+
 asyncio.run(main())
 ```
 
