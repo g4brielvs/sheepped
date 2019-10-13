@@ -17,14 +17,14 @@ class TestUSPS(TestCase):
 
     @patch("sheepped.requests.get")
     def test_successful_track(self, get):
-        get.return_value.content = "<Response>Ok</Response>"
+        get.return_value.content = b"<Response>Ok</Response>"
         response = self.usps.track("42")
         self.assertEqual(response, {"Response": "Ok"})
         get.assert_called_once_with(self.EXPECTED_URL)
 
     @patch("sheepped.requests.get")
     def test_failed_track(self, get):
-        get.return_value.content = "<Error>Oops</Error>"
-        with self.assertRaisesRegexp(USPSError, "Oops"):
+        get.return_value.content = b"<Error>Oops</Error>"
+        with self.assertRaisesRegex(USPSError, "Oops"):
             self.usps.track("42")
         get.assert_called_once_with(self.EXPECTED_URL)
