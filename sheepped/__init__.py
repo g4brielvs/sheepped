@@ -7,6 +7,10 @@ import xmltodict
 from lxml import etree
 
 
+class USPSError(Exception):
+    pass
+
+
 class USPS:
     '''
     Wrapper around USPS tracking API
@@ -28,5 +32,5 @@ class USPS:
         xml_response = requests.get(url).content
         response = json.loads(json.dumps(xmltodict.parse(xml_response)))
         if 'Error' in response:
-            raise
+            raise USPSError(response['Error'])
         return response

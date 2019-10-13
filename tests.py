@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import patch
 
-from sheepped import USPS
+from sheepped import USPS, USPSError
 
 
 class TestUSPS(TestCase):
@@ -16,5 +16,5 @@ class TestUSPS(TestCase):
     @patch("sheepped.requests.get")
     def test_failed_track(self, get):
         get.return_value.content = "<Error>Oops</Error>"
-        with self.assertRaises(RuntimeError):
+        with self.assertRaisesRegexp(USPSError, "Oops"):
             self.usps.track("42")
