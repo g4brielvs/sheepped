@@ -12,7 +12,8 @@ setuptools.setup(
     url="https://github.com/g4brielvs/sheepped",
     packages=setuptools.find_packages(),
     classifiers=[
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         'Development Status :: 3 - Alpha',
@@ -21,9 +22,7 @@ setuptools.setup(
         'Topic :: Utilities',
     ],
     keywords='shipping, usps',
-    install_requires=[
-        'lxml', 
-        'requests', 
-        'xmltodict'],
+    install_requires=["aiohttp", "lxml", "requests", "xmltodict"],
+    tests_require=["asynctest"],
     version="0.1.1",
 )

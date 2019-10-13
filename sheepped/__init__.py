@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-import json
-
 import requests
 import xmltodict
 from lxml import etree
@@ -28,10 +26,13 @@ class USPS:
         value = etree.tostring(xml).decode()
         return f"{self.URL}{value}"
 
-    def track(self, tracking_number):
-        url = self.url_for(tracking_number)
-        xml_response = requests.get(url).content
-        response = json.loads(json.dumps(xmltodict.parse(xml_response)))
+    def parse_xml_response(self, xml_response):
+        response = xmltodict.parse(xml_response)
         if "Error" in response:
             raise USPSError(response["Error"])
         return response
+
+    def track(self, tracking_number):
+        url = self.url_for(tracking_number)
+        contents = requests.get(url).content
+        return self.parse_xml_response(contents)
