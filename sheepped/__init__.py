@@ -2,6 +2,7 @@
 
 import requests
 import xmltodict
+from aiohttp import ClientSession
 from lxml import etree
 
 
@@ -35,4 +36,11 @@ class USPS:
     def track(self, tracking_number):
         url = self.url_for(tracking_number)
         contents = requests.get(url).content
+        return self.parse_xml_response(contents)
+
+    async def aiotrack(self, tracking_number):
+        url = self.url_for(tracking_number)
+        async with ClientSession() as session:
+            async with session.get(url) as response:
+                contents = await response.read()
         return self.parse_xml_response(contents)
