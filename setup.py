@@ -1,14 +1,13 @@
 import setuptools
+from pathlib import Path
 
-with open("README.md", "r") as f:
-    long_description = f.read()
 
 setuptools.setup(
     name="sheepped",
     author="Gabriel Stefanini",
     author_email="g4brielvs@gbrielvs.me",
     description="A Python wrapper for tracking delivery!",
-    long_description=long_description,
+    long_description=Path('README.md').read_text(),
     long_description_content_type="text/markdown",
     url="https://github.com/g4brielvs/sheepped",
     packages=setuptools.find_packages(),

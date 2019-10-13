@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import json
 import requests
@@ -7,7 +6,8 @@ import xmltodict
 
 from lxml import etree
 
-class USPS(object):
+
+class USPS:
     '''
     Wrapper around USPS tracking API
 
