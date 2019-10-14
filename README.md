@@ -1,5 +1,5 @@
 # Sheepped
-[![Build Status](https://travis-ci.org/g4brielvs/sheepped.svg?branch=master)](https://travis-ci.org/sheepped/)
+[![Build Status](https://travis-ci.org/g4brielvs/sheepped.svg?branch=master)](https://travis-ci.org/g4brielvs/sheepped/)
 [![PyPI](https://img.shields.io/pypi/v/sheepped.svg)](https://pypi.python.org/pypi/sheepped)
 [![Versions](https://img.shields.io/pypi/pyversions/sheepped.svg)](https://pypi.python.org/pypi/sheepped)
 
