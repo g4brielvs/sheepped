@@ -1,6 +1,14 @@
 # Sheepped
+[![Build Status](https://travis-ci.org/g4brielvs/sheepped.svg?branch=master)](https://travis-ci.org/sheepped/)
+[![PyPI](https://img.shields.io/pypi/v/sheepped.svg)](https://pypi.python.org/pypi/sheepped)
+[![Versions](https://img.shields.io/pypi/pyversions/sheepped.svg)](https://pypi.python.org/pypi/sheepped)
 
  🚚 A Python wrapper for tracking delivery (e.g. USPS).
+
+* [Getting Started](#getting-started)
+* [Usage](#usage)
+* [Testing](#tests)
+* [Versioning](#versioning)
 
 ## Getting Started
 
@@ -42,3 +50,11 @@ asyncio.run(main())
 ## Tests
 
     $ python setup.py test
+
+## Versioning
+
+Always suggest a version bump. We use [Semantic Versioning](http://semver.org).
+
+    MICRO: the API is the same, no risk of breaking code
+    MINOR: values have been added, existing values are unchanged
+    MAJOR: existing values have been changed or removed
