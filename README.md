@@ -1,8 +1,13 @@
-# Sheepped
 [![Build Status](https://travis-ci.org/g4brielvs/sheepped.svg?branch=master)](https://travis-ci.org/g4brielvs/sheepped/)
 [![PyPI](https://img.shields.io/pypi/v/sheepped.svg)](https://pypi.python.org/pypi/sheepped)
 [![Versions](https://img.shields.io/pypi/pyversions/sheepped.svg)](https://pypi.python.org/pypi/sheepped)
 
+
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Creative-Tail-Animal-sheep.svg/1024px-Creative-Tail-Animal-sheep.svg.png" width="200">
+</p>
+
+# Sheepped
  🚚 A Python wrapper for tracking delivery (e.g. USPS).
 
 * [Getting Started](#getting-started)
